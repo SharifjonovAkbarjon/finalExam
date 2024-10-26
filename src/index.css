@@ -1,8 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+
 body {
-  @apply font-sans;
-  background: #000;
+    background: black;
+    
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.dark-skeleton, .dark-skeleton-box, .skeleton__animation {
+    background: linear-gradient(90deg, #333, #555, #333);
+    background-size: 200%;
+    animation: darkSkeleton 1s linear infinite;
+    border-radius: 20px; 
+}
+
+@keyframes darkSkeleton {
+    to {
+        background-position: 200%;
+    }
+}
+
+
+@keyframes skeleton {
+    to {
+        background-position: 200%;
+    }
+}
+
+
+@keyframes darkSkeletonBox {
+    to {
+        background-position: 200%;
+    }
 }

@@ -1,72 +1,151 @@
 import { lazy, LazyExoticComponent } from "react";
 import { useRoutes } from "react-router-dom";
 import { SuspenseComponent as Suspense } from "../utils";
-import Login from "../pages/login/Login";
-import SignUp from "../pages/sign-up/SignUp";
-import Auth from "../components/auth/Auth";
-import NewPost from "../pages/newPost/NewPost";
+
+const Detail: LazyExoticComponent<any> = lazy(
+    () => import("../components/detail/Detail")
+);
+
+const Profile: LazyExoticComponent<any> = lazy(
+    () => import("../components/profile/Profile")
+);
+
+const Settings: LazyExoticComponent<any> = lazy(
+    () => import("../components/settings/Settings")
+);
+
+const House: LazyExoticComponent<any> = lazy(
+    () => import("../components/house/House")
+);
+
+const Create: LazyExoticComponent<any> = lazy(
+    () => import("../components/create/Create")
+);
+
+const People: LazyExoticComponent<any> = lazy(
+    () => import("../components/people/People")
+);
+const PageNot: LazyExoticComponent<any> = lazy(
+    () => import("../components/pageNot/pageNot")
+);
+
+const Layout: LazyExoticComponent<any> = lazy(
+    () => import("../pages/layout/Layout")
+);
+
+const Auth: LazyExoticComponent<any> = lazy(() => import("../pages/Auths"));
+
+const Login: LazyExoticComponent<any> = lazy(
+    () => import("../components/login/Auth")
+);
 
 const Home: LazyExoticComponent<any> = lazy(() => import("../pages/home/Home"));
 
-const Layout: LazyExoticComponent<any> = lazy(
-  () => import("../pages/layout/Layout")
-);
-
 const Routers = () => {
-  return useRoutes([
-    {
-      path: "/",
-      element: (
-        <Suspense>
-          <Layout />
-        </Suspense>
-      ),
-      children: [
+    return useRoutes([
         {
-          path: "/",
-          element: (
-            <Auth>
-              <Suspense>
-                <Home />
-              </Suspense>
-            </Auth>
-          ),
+            path: "/",
+            element: (
+                <Suspense>
+                    <Layout />
+                </Suspense>
+            ),
+            children: [
+                {
+                    path: "/auth/login",
+                    element: (
+                        <Suspense>
+                            <Login />
+                        </Suspense>
+                    ),
+                },
+                {
+                    path: "/",
+                    element: (
+                        <Suspense>
+                            <Auth />
+                        </Suspense>
+                    ),
+                    children: [
+                        {
+                            path: "",
+                            element: (
+                                <Suspense>
+                                    <Home />
+                                </Suspense>
+                            ),
+                            children: [
+                                {
+                                    path: "",
+                                    element: (
+                                        <Suspense>
+                                            <House />
+                                        </Suspense>
+                                    ),
+                                },
+                                {
+                                    path: "/people",
+                                    element: (
+                                        <Suspense>
+                                            <People />
+                                        </Suspense>
+                                    ),
+                                },
+                                {
+                                    path: "/pageNot",
+                                    element: (
+                                        <Suspense>
+                                            <PageNot />
+                                        </Suspense>
+                                    ),
+                                },
+                                {
+                                    path: "/people",
+                                    element: (
+                                        <Suspense>
+                                            <People />
+                                        </Suspense>
+                                    ),
+                                },
+                                {
+                                    path: "/create",
+                                    element: (
+                                        <Suspense>
+                                            <Create />
+                                        </Suspense>
+                                    ),
+                                },
+                                {
+                                    path: "/settings",
+                                    element: (
+                                        <Suspense>
+                                            <Settings />
+                                        </Suspense>
+                                    ),
+                                },
+                                {
+                                    path: "/profile",
+                                    element: (
+                                        <Suspense>
+                                            <Profile />
+                                        </Suspense>
+                                    ),
+                                },
+                                {
+                                    path: "/users/:username",
+                                    element: (
+                                        <Suspense>
+                                            <Detail />
+                                        </Suspense>
+                                    ),
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
         },
-        {
-          path: "/new-post",
-          element: (
-            <Suspense>
-              <NewPost />
-            </Suspense>
-          ),
-        },
-      ],
-    },
-    {
-      path: "*",
-      element: (
-        <Suspense>
-          <h2>404</h2>
-        </Suspense>
-      ),
-    },
-    {
-      path: "/login",
-      element: (
-        <Suspense>
-          <Login />
-        </Suspense>
-      ),
-    },
-    {
-      path: "/sign-up",
-      element: (
-        <Suspense>
-          <SignUp />
-        </Suspense>
-      ),
-    },
-  ]);
+    ]);
 };
 
 export default Routers;
