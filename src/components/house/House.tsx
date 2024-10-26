@@ -6,7 +6,7 @@ import rasm2 from "../../assets/john.png";
 import rasm3 from "../../assets/ednamz.png";
 import rasm4 from "../../assets/harry.png";
 import rasm5 from "../../assets/joe.png";
-import rasm6 from "../../assets/roman.svg";
+import rasm6 from "../../assets/roman.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
