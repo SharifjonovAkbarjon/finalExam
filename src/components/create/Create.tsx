@@ -1,20 +1,20 @@
 import { MdCreateNewFolder } from "react-icons/md";
-import createimg from "../../images/create.svg";
-import { FormEvent, useState } from "react";
 import { useCreatePostMutation, useUploadFilesMutation } from "../../redux/api/file-api";
+import { FormEvent, useState } from "react";
+import { useProfileQuery } from "../../redux/api/user-api";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
-import { useProfileQuery } from "../../redux/api/user-api";
+import create from "../../assets/create.svg";
 
 const Create = () => {
-    const navigate = useNavigate();
     const [uploadFiles] = useUploadFilesMutation();
+    const [image, setImage] = useState<File[]>([]);  // To'g'ri state turi
     const [createPost, { isLoading }] = useCreatePostMutation();
     const [saveImages, setSaveImages] = useState<string[]>([]);
-    const [image, setImage] = useState<File[]>([]);  // To'g'ri state turi
     const [caption, setCaption] = useState<string>("");
-    const [location, setLocation] = useState<string>("");
     const [contentAlt, setContentAlt] = useState<string>("");
+    const [location, setLocation] = useState<string>("");
+    const navigate = useNavigate();
     const { data: profile } = useProfileQuery({});
 
     const handleUpload = () => {
@@ -89,7 +89,7 @@ const Create = () => {
                                     accept="image/*"
                                 />
                                 <div className="flex flex-col items-center z-[3] absolute top-0 left-0 w-full h-full bg-[#101012] pt-12 rounded-[14px]">
-                                    <img src={createimg} alt="create img" />
+                                    <img src={create} alt="create img" />
                                     <p className="text-[#EFEFEF] font-semibold text-lg mb-2 mt-3">
                                         Drag photos and videos here
                                     </p>
@@ -186,3 +186,4 @@ const Create = () => {
 };
 
 export default Create;
+

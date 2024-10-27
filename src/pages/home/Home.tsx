@@ -1,16 +1,16 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
-import logo from "../../images/logo.svg";
 import { RiHome3Line } from "react-icons/ri";
-import { TbLibraryPhoto, TbLogout2 } from "react-icons/tb";
+import { BsPeople } from "react-icons/bs";
 import { HiOutlineSaveAs } from "react-icons/hi";
 import { TfiVideoClapper } from "react-icons/tfi";
-import { BsPeople } from "react-icons/bs";
+import { TbLibraryPhoto, TbLogout2 } from "react-icons/tb";
+import logo from "../../assets/logo.svg";
 import {IoChatbubbleEllipsesOutline,IoSettingsOutline,} from "react-icons/io5";
-import { MdCreateNewFolder, MdOutlineClose } from "react-icons/md";
-import { useProfileQuery } from "../../redux/api/user-api";
 import { useDispatch, useSelector } from "react-redux";
+import { MdCreateNewFolder, MdOutlineClose } from "react-icons/md";
 import { RootState } from "../../redux";
 import { logout } from "../../redux/slice/auth-slice";
+import { useProfileQuery } from "../../redux/api/user-api";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 

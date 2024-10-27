@@ -15,7 +15,7 @@ body {
     display: none;
 }
 
-.dark-skeleton, .dark-skeleton-box, .skeleton__animation {
+.dark-skeleton, .dark-skeleton-box, .skeleton__animation, .detailLoading  {
     background: linear-gradient(90deg, #333, #555, #333);
     background-size: 200%;
     animation: darkSkeleton 1s linear infinite;

@@ -19,6 +19,7 @@ import { User } from "../../types";
 import { RootState } from "../../redux";
 import Loading from "../loading/Loading";
 import UserLoading from "../userLoading/UserLoading";
+import StoryLoading from "../storyLoading/StoryLoading";
 
 interface PostType {
     _id: string;
@@ -40,10 +41,10 @@ interface PostType {
 
 
 
-const House = () => {
+const HomePage = () => {
+    const handleLike = (_id: string) => toggleLike(_id);
     const { data: proData, isLoading: isProLoading } = useGetPostsQuery({});
     const [toggleLike] = useToggleLikeMutation({});
-    const handleLike = (_id: string) => toggleLike(_id);
 
     const proPosts = proData?.posts?.map((e: PostType) => (
         <div key={e._id}>
@@ -141,9 +142,9 @@ const House = () => {
 
 
     const { data, isLoading } = useGetUsersQuery({ limit: 8 });
-    const [followUser] = useFollowMutation();
     const userState = useSelector((state: RootState) => state.auth.user);
     const handleFollow = (username: string) => followUser(username);
+    const [followUser] = useFollowMutation();
 
     const TopCreators: JSX.Element[] = data?.map(
         (user: User): JSX.Element => (
@@ -160,21 +161,9 @@ const House = () => {
                         (item) => item._id === userState?._id
                     ) ? (
                         <button
-                            onClick={() =>
-                                handleFollow("unfollow/" + user.username)
-                            }
-                            className="block text-xs text-neutral-700 font-semibold py-[6px] px-[18px] rounded-lg bg-[#FFB620]">
-                            Unfollow
-                        </button>
+                            onClick={() => handleFollow("unfollow/" + user.username)} className="block text-xs text-neutral-700 font-semibold py-[6px] px-[18px] rounded-lg bg-[#FFB620]">Unfollow </button>
                     ) : (
-                        <button
-                            onClick={() =>
-                                handleFollow("follow/" + user.username)
-                            }
-                            className="block text-xs text-white font-semibold py-[6px] px-[18px] rounded-lg bg-[#877EFF]">
-                            Follow
-                        </button>
-                    )}
+                        <button onClick={() => handleFollow("follow/" + user.username)} className="block text-xs text-white font-semibold py-[6px] px-[18px] rounded-lg bg-[#877EFF]"> Follow</button>)}
                 </div>
             </div>
         )
@@ -182,11 +171,21 @@ const House = () => {
     return (
         <div className="flex justify-between items-start">
             <div className="pt-5 px-3 lg:pt-[60px] w-full lg:w-[705px] 2xl:px-[54px]">
-                <div className="">
+                {/* <div className="">
                     <div className="flex items-center overflow-hidden gap-x-[21px]">
                         {story}
                     </div>
+                </div> */}
+                <div className="">
+                    <div className="flex items-center overflow-hidden gap-x-[21px]">
+                        {isProLoading ? (
+                          <StoryLoading/>
+                        ) : (
+                            story
+                        )}
+                    </div>
                 </div>
+
                 <div className="">
                     <h2 className="text-lg lg:text-[30px] font-bold text-white py-10">
                         Home Feed
@@ -228,7 +227,7 @@ const House = () => {
                 <div className="pt-12 pl-6 w-[465px] pr-[37px] pb-10">
                     <h3 className="text-white text-[24px] font-bold mb-10">Top Creators</h3>
                     {isLoading ? (
-                        <UserLoading/>
+                        <UserLoading />
                     ) : (
                         <div className="grid grid-cols-2 gap-[24px] h-[100vh] overflow-x-auto overflow-scroll pb-[150px]">{TopCreators}</div>
                     )}
@@ -238,4 +237,4 @@ const House = () => {
     );
 };
 
-export default House;
+export default HomePage;

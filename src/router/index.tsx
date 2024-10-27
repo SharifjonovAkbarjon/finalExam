@@ -2,8 +2,18 @@ import { lazy, LazyExoticComponent } from "react";
 import { useRoutes } from "react-router-dom";
 import { SuspenseComponent as Suspense } from "../utils";
 
+const HomePage: LazyExoticComponent<any> = lazy(
+    () => import("../components/house/HomePage")
+);
 const Detail: LazyExoticComponent<any> = lazy(
     () => import("../components/detail/Detail")
+);
+const Create: LazyExoticComponent<any> = lazy(
+    () => import("../components/create/Create")
+);
+
+const People: LazyExoticComponent<any> = lazy(
+    () => import("../components/people/People")
 );
 
 const Profile: LazyExoticComponent<any> = lazy(
@@ -14,17 +24,6 @@ const Settings: LazyExoticComponent<any> = lazy(
     () => import("../components/settings/Settings")
 );
 
-const House: LazyExoticComponent<any> = lazy(
-    () => import("../components/house/House")
-);
-
-const Create: LazyExoticComponent<any> = lazy(
-    () => import("../components/create/Create")
-);
-
-const People: LazyExoticComponent<any> = lazy(
-    () => import("../components/people/People")
-);
 const PageNot: LazyExoticComponent<any> = lazy(
     () => import("../components/pageNot/pageNot")
 );
@@ -79,23 +78,7 @@ const Routers = () => {
                                     path: "",
                                     element: (
                                         <Suspense>
-                                            <House />
-                                        </Suspense>
-                                    ),
-                                },
-                                {
-                                    path: "/people",
-                                    element: (
-                                        <Suspense>
-                                            <People />
-                                        </Suspense>
-                                    ),
-                                },
-                                {
-                                    path: "/pageNot",
-                                    element: (
-                                        <Suspense>
-                                            <PageNot />
+                                            <HomePage />
                                         </Suspense>
                                     ),
                                 },
@@ -120,6 +103,22 @@ const Routers = () => {
                                     element: (
                                         <Suspense>
                                             <Settings />
+                                        </Suspense>
+                                    ),
+                                },
+                                {
+                                    path: "/pageNot",
+                                    element: (
+                                        <Suspense>
+                                            <PageNot />
+                                        </Suspense>
+                                    ),
+                                },
+                                {
+                                    path: "/people",
+                                    element: (
+                                        <Suspense>
+                                            <People />
                                         </Suspense>
                                     ),
                                 },

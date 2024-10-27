@@ -6,9 +6,9 @@ import { HiOutlineTag } from "react-icons/hi";
 import { BiSolidVideos } from "react-icons/bi";
 import { TbPhoto } from "react-icons/tb";
 import { FaPlus } from "react-icons/fa";
-import imggalochka from "../../images/galochka.svg";
 import { useSelector } from "react-redux";
 import Posts from "../posts/Posts";
+import DetailLoading from "../detailLoading/DetailLoading";
 
 type Follower = {
     _id: string;
@@ -28,17 +28,7 @@ const Detail = () => {
             <div>
                 <div>
                     {isLoad ? (
-                        <div className="flex flex-col gap-y-3 mb-3 lg:flex-row items-start gap-x-8">
-                            <div className="w-[50px] h-[50px] lg:w-[150px] lg:h-[150px] rounded-full border-2 border-[#1F1F22]"></div>
-                            <div className="flex flex-col gap-y-3">
-                                <div className="border-[#1F1F22] border-2 w-[200px] rounded-2xl h-[30px]"></div>
-                                <div className="flex">
-                                    <div className="border-[#1F1F22] border-2 w-[50px] rounded-lg h-[40px]"></div>
-                                    <div className="border-[#1F1F22] border-2 w-[50px] rounded-lg h-[40px]"></div>
-                                    <div className="border-[#1F1F22] border-2 w-[50px] rounded-lg h-[40px]"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <DetailLoading/>
                     ) : (
                         <div className="flex flex-col lg:flex-row items-start gap-x-8">
                             <img
@@ -52,7 +42,6 @@ const Detail = () => {
                                         <p className="text-xl lg:text-4xl font-semibold text-white mb-1">
                                             {data?.fullName}
                                         </p>
-                                        <img src={imggalochka} alt="img" />
                                     </div>
                                     <div className="flex items-center gap-x-3">
                                         {data?.followers.some(
