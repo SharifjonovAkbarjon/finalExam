@@ -1,22 +1,18 @@
-import { useGetUserPostsQuery } from "../../redux/api/file-api";
 import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useGetUserPostsQuery } from "../../redux/api/file-api";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const Posts = ({ userId }: any) => {
     const { data: posts } = useGetUserPostsQuery({ userId });
-
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
     const handleImageClick = (imageUrl: string) => {
         setSelectedImage(imageUrl);
     };
-
     const closeModal = () => {
         setSelectedImage(null);
     };
-
     const pagination = {
         clickable: true,
         renderBullet: function (_: any, className: string) {

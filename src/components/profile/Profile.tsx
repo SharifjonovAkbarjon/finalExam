@@ -4,6 +4,7 @@ import { TbPhoto } from "react-icons/tb";
 import { BiSolidVideos } from "react-icons/bi";
 import { HiOutlineTag } from "react-icons/hi";
 import { FiCamera } from "react-icons/fi";
+import DetailLoading from "../detailLoading/DetailLoading";
 
 const Profile = () => {
     const { data, isLoading } = useProfileQuery({});
@@ -13,17 +14,7 @@ const Profile = () => {
             <div>
                 <div>
                     {isLoading ? (
-                        <div className="flex flex-col gap-y-3 mb-3 lg:flex-row items-start gap-x-8">
-                            <div className="w-[50px] h-[50px] lg:w-[150px] lg:h-[150px] rounded-full border-2 border-[#1F1F22]"></div>
-                            <div className="flex flex-col gap-y-3">
-                                <div className="border-[#1F1F22] border-2 w-[200px] rounded-2xl h-[30px]"></div>
-                                <div className="flex">
-                                    <div className="border-[#1F1F22] border-2 w-[50px] rounded-lg h-[40px]"></div>
-                                    <div className="border-[#1F1F22] border-2 w-[50px] rounded-lg h-[40px]"></div>
-                                    <div className="border-[#1F1F22] border-2 w-[50px] rounded-lg h-[40px]"></div>
-                                </div>
-                            </div>
-                        </div>
+                      <DetailLoading/>
                     ) : (
                         <div className="flex flex-col lg:flex-row items-start gap-x-8 ">
                             <img
