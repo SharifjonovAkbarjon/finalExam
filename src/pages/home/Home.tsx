@@ -11,6 +11,7 @@ import { logout } from "../../redux/slice/auth-slice";
 import { useProfileQuery } from "../../redux/api/user-api";
 import { useState } from "react";
 import logo from "../../assets/logo.svg";
+import { MdCreateNewFolder } from "react-icons/md";
 
 const Home = () => {
     const { data: prodata } = useProfileQuery({});
@@ -29,7 +30,7 @@ const Home = () => {
                     </Link>
                     <div className="flex items-center gap-x-2">
                         <div className="last__box">
-                            <NavLink to={"/profile"}>
+                            <NavLink to={"/profile"}> 
                                 <div className="flex items-center gap-x-[11px] py-3">
                                     <img
                                         className="w-[30px] h-[30px] rounded-full"
@@ -99,6 +100,12 @@ const Home = () => {
                             to={"/pageNot"}>
                             <IoChatbubbleEllipsesOutline className="w-[24px] h-[24px] text-[#877EFF] " />
                             <p className="text-[18px]">Chats</p>
+                        </NavLink>
+                        <NavLink
+                            className="flex items-center gap-[10px] p-[10px] rounded-[8px] text-white hover hover:text-white hover:bg-[rgb(135,126,255)]"
+                            to={"/create"}>
+                            <MdCreateNewFolder className="text-lg min-[800px]:text-xl lg:text-2xl text-[#877EFF] link__icon" />{" "}
+                            <p className="text-[10px] lg:text-lg">Create</p>
                         </NavLink>
                     </li>
                     <li>
